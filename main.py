@@ -1,13 +1,23 @@
 import pandas as pd
 
 
-file_test_data = 'data/house_prices/test.csv'
-file_train_data = 'data/house_prices/train.csv'
+class DataSet:
+    house_prices = 0
+
+
+DATA_SET = DataSet.house_prices
+
+PATHS = (
+    ('house_prices/train.csv', 'house_prices/test.csv', 'house_prices/sample_submission.csv'),
+         )
+
+
+def get_data() -> map:
+    return map(pd.read_csv, map(lambda x: 'data/' + x, PATHS[DATA_SET]))
 
 
 if __name__ == '__main__':
-    train_data = pd.read_csv(file_train_data)
-    test_data = pd.read_csv(file_test_data)
+    train_data, test_data, answers_data = get_data()
 
     print(train_data.head())
 
