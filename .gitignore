@@ -2,7 +2,7 @@
 .idea/
 
 
-charts/*
+charts/
 *.png
 
 data/*
