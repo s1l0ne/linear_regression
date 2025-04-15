@@ -1,7 +1,8 @@
 import pandas as pd
+from enum import IntEnum
 
 
-class DataSet:
+class DataSet(IntEnum):
     house_prices = 0
 
 
@@ -12,8 +13,8 @@ PATHS = (
          )
 
 
-def get_data() -> map:
-    return map(pd.read_csv, map(lambda x: 'data/' + x, PATHS[DATA_SET]))
+def get_data() -> tuple:
+    return tuple(pd.read_csv(f'data/{path}') for path in PATHS[DATA_SET])
 
 
 if __name__ == '__main__':
