@@ -1,0 +1,9 @@
+.venv/
+.idea/
+
+
+charts/*
+*.png
+
+data/*
+!data/**/*.csv
