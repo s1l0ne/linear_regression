@@ -1,20 +1,14 @@
 import pandas as pd
-from enum import IntEnum
+import matplotlib.pyplot as plt
+import os
+from config import get_config, DataSet
 
 
-class DataSet(IntEnum):
-    house_prices = 0
-
-
-DATA_SET = DataSet.house_prices
-
-PATHS = {
-    DataSet.house_prices: ('house_prices/train.csv', 'house_prices/test.csv', 'house_prices/sample_submission.csv'),
-        }
+config = get_config(DataSet.house_prices)
 
 
 def get_data() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
-    train_path, test_path, answers_path = PATHS[DATA_SET]
+    train_path, test_path, answers_path = config['paths']
 
     return (
         pd.read_csv(f'data/{train_path}'),
@@ -23,16 +17,29 @@ def get_data() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     )
 
 
+def make_charts(df: pd.DataFrame, x_names: list[str], y_name: str, folder: str) -> None:
+    folder_path = f"charts/{folder}"
+    os.makedirs(folder_path, exist_ok=True)
+
+    for feature in x_names:
+        img = df[[feature, y_name]].plot.scatter(x=feature, y=y_name)
+
+        img.set_title(f"{feature} vs {y_name}")
+        img.set_xlabel(feature)
+        img.set_ylabel(y_name)
+
+        plt.savefig(f"{folder_path}/{feature}.png", dpi=300, bbox_inches='tight')
+
+        plt.close()
+
+
 if __name__ == '__main__':
     train_data, test_data, answers_data = get_data()
 
-    print(train_data.head())
-
-    features = ['GrLivArea', 'GarageCars', 'FullBath']
-    target = 'SalePrice'
+    features = config['features']
+    target = config['target']
 
     train_data = train_data[features + [target]]
     test_data = test_data[['Id'] + features]
 
-    print(train_data.head())
-    print(test_data.head())
+    make_charts(train_data, features, target, 'before')
