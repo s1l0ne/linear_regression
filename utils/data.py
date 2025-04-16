@@ -18,6 +18,6 @@ def preprocess_data(df: pd.DataFrame) -> pd.DataFrame:
         mean = df[column].mean()
         sigma = df[column].std()
 
-        df = df[(df[column] >= mean - sigma * 3) & (df[column] <= mean + sigma * 3)]
+        df = df[(df[column] >= mean - sigma * 2) & (df[column] <= mean + sigma * 2)]
 
     return df

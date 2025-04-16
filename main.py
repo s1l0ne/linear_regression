@@ -1,8 +1,8 @@
 from config import get_config, DataSet
-from utils.charts import make_charts
+from utils.charts import make_charts, chart_linear_reg
 from utils.data import get_data, preprocess_data
 from models.linear_regression import linear_regression
-import numpy as np
+
 
 config = get_config(DataSet.house_prices)
 
@@ -27,4 +27,4 @@ if __name__ == '__main__':
 
     predict = linear_regression(X, y)
 
-    print(predict(np.array([896, 1, 1])) / 169277.0524984)
+    chart_linear_reg(train_data, features, target, 'regression', predict)

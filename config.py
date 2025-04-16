@@ -12,10 +12,11 @@ DATASET_CONFIG = {
             'house_prices/test.csv',
             'house_prices/sample_submission.csv'
         ),
-        'features': ['GrLivArea', 'GarageCars', 'FullBath'],
+        'features': ['GrLivArea'],
         'target': 'SalePrice'
     }
 }
+# , 'GarageCars', 'FullBath'
 
 
 def get_config(dataset: DataSet) -> dict:
