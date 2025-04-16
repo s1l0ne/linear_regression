@@ -9,3 +9,15 @@ def get_data(config: dict) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
         pd.read_csv(f'data/{test_path}'),
         pd.read_csv(f'data/{answers_path}')
     )
+
+
+def preprocess_data(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.dropna()
+
+    for column in df.select_dtypes(include=['number']).columns:
+        mean = df[column].mean()
+        sigma = df[column].std()
+
+        df = df[(df[column] >= mean - sigma * 3) & (df[column] <= mean + sigma * 3)]
+
+    return df
