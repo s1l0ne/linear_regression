@@ -1,4 +1,3 @@
-import pandas as pd
 from config import get_config, DataSet
 from utils.charts import make_charts
 from utils.data import get_data
