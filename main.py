@@ -1,6 +1,7 @@
 from config import get_config, DataSet
 from utils.charts import make_charts
 from utils.data import get_data, preprocess_data
+import numpy as np
 
 config = get_config(DataSet.house_prices)
 
@@ -19,3 +20,7 @@ if __name__ == '__main__':
     train_data = preprocess_data(train_data)
 
     make_charts(train_data, features, target, 'after')
+
+    X = train_data[features].to_numpy()
+    y = train_data[target].to_numpy()
+
