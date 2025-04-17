@@ -10,3 +10,6 @@ data/*
 !data/**/*.txt
 
 logs/
+
+__pycache__/
+*.py[cod]
