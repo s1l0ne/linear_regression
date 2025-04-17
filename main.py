@@ -25,9 +25,8 @@ if __name__ == '__main__':
     train_data = train_data[features + [target]]
     test_data = pd.merge(test_data[['Id'] + features], answers_data[['Id', target]], on='Id')
     data = pd.concat([train_data, test_data], ignore_index=True)
-    log.info(f'Данные успешно загружены: {data.shape[0]} записей')
-
     train_data, test_data = train_test_split(data.dropna())
+    log.info(f'Данные успешно загружены: {data.shape[0]} записей')
 
     log.info('Этап 2: построение визуализаций (до предобработки)')
     make_charts(train_data, features, target, 'before')
