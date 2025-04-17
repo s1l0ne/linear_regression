@@ -16,7 +16,8 @@ DATASET_CONFIG = {
             'house_prices/test.csv',
             'house_prices/sample_submission.csv'
         ),
-        'features': ['GrLivArea', 'GarageCars', 'FullBath'],
+        'features': ['GrLivArea', 'GarageCars', 'FullBath', 'YearBuilt', 'BedroomAbvGr', 'KitchenAbvGr',
+                     'TotRmsAbvGrd', 'GarageArea'],
         'target': 'SalePrice'
     }
 }
@@ -33,7 +34,7 @@ def setup_logging(filename: str = None):
 
     path = f'logs/{filename}'
 
-    handlers = [log.StreamHandler(sys.stdout)]
+    handlers = [log.StreamHandler(sys.stderr)]
     if filename:
         handlers.append(logging.FileHandler(path, mode='w'))
 

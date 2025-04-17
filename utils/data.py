@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 
 def get_data(config: dict) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
@@ -18,6 +19,19 @@ def preprocess_data(df: pd.DataFrame) -> pd.DataFrame:
         mean = df[column].mean()
         sigma = df[column].std()
 
-        df = df[(df[column] >= mean - sigma * 2) & (df[column] <= mean + sigma * 2)]
+        df = df[(df[column] >= mean - sigma * 3) & (df[column] <= mean + sigma * 3)]
 
     return df
+
+
+def train_test_split(df, test_size=0.2, random_state=None):
+    if random_state is not None:
+        np.random.seed(random_state)
+
+    indices = np.random.permutation(len(df))
+    split = int(len(df) * (1 - test_size))
+
+    train_idx = indices[:split]
+    test_idx = indices[split:]
+
+    return df.iloc[train_idx].copy(), df.iloc[test_idx].copy()
