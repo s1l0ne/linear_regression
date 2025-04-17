@@ -8,3 +8,5 @@ charts/
 data/*
 !data/**/*.csv
 !data/**/*.txt
+
+logs/
