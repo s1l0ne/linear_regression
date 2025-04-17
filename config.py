@@ -28,13 +28,13 @@ def get_config(dataset: DataSet) -> dict:
     return DATASET_CONFIG[dataset]
 
 
-def setup_logging(filename: str, log_to_file: bool = True):
+def setup_logging(filename: str = None):
     os.makedirs('logs', exist_ok=True)
 
     path = f'logs/{filename}'
 
     handlers = [log.StreamHandler(sys.stdout)]
-    if log_to_file:
+    if filename:
         handlers.append(logging.FileHandler(path, mode='w'))
 
     logging.basicConfig(

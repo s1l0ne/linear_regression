@@ -11,9 +11,9 @@ config = get_config(DataSet.house_prices)
 
 
 if __name__ == '__main__':
-    log.info('Запуск')
+    log.info('Инициализация: запуск пайплайна обработки данных')
 
-    log.info('Считывание данных')
+    log.info('Этап 1: чтение данных из CSV')
     train_data, test_data, answers_data = get_data(config)
 
     features = config['features']
@@ -21,25 +21,25 @@ if __name__ == '__main__':
 
     train_data = train_data[features + [target]]
     test_data = test_data[['Id'] + features]
-    log.info('Данные считаны')
+    log.info(f'Данные успешно загружены: {train_data.shape[0]} записей в train')
 
-    log.info('Создание чартов before')
+    log.info('Этап 2: построение визуализаций (до предобработки)')
     make_charts(train_data, features, target, 'before')
-    log.info('Чарты before созданы')
+    log.info('Графики успешно сохранены в директории charts/before')
 
-    log.info('Начало обработки данных')
+    log.info('Этап 3: предобработка данных')
     train_data = preprocess_data(train_data)
-    log.info('Данные обработаны')
+    log.info('Предобработка завершена')
 
-    log.info('Создание чартов after')
+    log.info('Этап 4: построение визуализаций (после предобработки)')
     make_charts(train_data, features, target, 'after')
-    log.info('Чарты after созданы')
+    log.info('Графики успешно сохранены в директории charts/after')
 
-    log.info('Начало обучения модели')
+    log.info('Этап 5: инициализация и обучение модели линейной регрессии (linear regression)')
     X = train_data[features].to_numpy()
     y = train_data[target].to_numpy()
 
     predict = linear_regression(X, y)
-    log.info('Модель обучена')
+    log.info('Обучение завершено успешно')
 
-    log.info('Заверщение работы программы')
+    log.info('Заверщение работы: пайплайн выполнен без критических ошибок')
