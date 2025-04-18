@@ -1,13 +1,14 @@
-from config import get_config, DataSet, setup_logging
+import logging as log
+from datetime import datetime
+
+import numpy as np
+import pandas as pd
+
+from config import DataSet, get_config, setup_logging
+from models.linear_regression import linear_regression
 from utils.charts import make_charts, make_charts_compare
 from utils.data import get_data, preprocess_data, train_test_split
 from utils.evaluate_model import evaluate_model
-from models.linear_regression import linear_regression
-import logging as log
-from datetime import datetime
-import pandas as pd
-import numpy as np
-
 
 setup_logging(datetime.now().strftime("%d-%m-%Y_%H%M%S.log"))
 config = get_config(DataSet.house_prices)

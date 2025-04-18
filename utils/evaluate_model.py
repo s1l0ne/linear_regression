@@ -1,5 +1,6 @@
-import numpy as np
 from typing import Callable
+
+import numpy as np
 
 
 def MAE(y_true: np.ndarray, y_predict: np.ndarray):

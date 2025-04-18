@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def linear_regression(x: np.ndarray, y: np.ndarray, rate: float = 0.0001, epochs: int = 10_000):
+def linear_regression(x: np.ndarray, y: np.ndarray, rate: float = 0.00001, epochs: int = 10_000):
     mean = np.mean(x, axis=0)
     std = np.std(x, axis=0)
     std[std == 0] = 1
@@ -20,10 +20,7 @@ def linear_regression(x: np.ndarray, y: np.ndarray, rate: float = 0.0001, epochs
 
             b += rate * (y[i] - y_predict)
 
-    def predict(x) -> float:
-        x = np.array(x)
-        if x.ndim != 1:
-            raise ValueError("Input must be a 1D array")
+    def predict(x: np.ndarray) -> float:
         return np.dot((x - mean) / std, w) + b
 
     return predict

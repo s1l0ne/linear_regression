@@ -1,7 +1,8 @@
 import os
-import pandas as pd
+
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 
 
 def make_charts(df: pd.DataFrame, x_names: list[str], y_name: str, folder: str) -> None:
