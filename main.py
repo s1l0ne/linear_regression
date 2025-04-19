@@ -1,7 +1,6 @@
 import logging as log
 from datetime import datetime
 
-import numpy as np
 import pandas as pd
 
 from config import DataSet, get_config, setup_logging
@@ -54,7 +53,7 @@ if __name__ == '__main__':
     log.info('Этап 6: расчёт метрик MAE, MSE, RMSE и R2-score')
     mae, mse, rmse, r2 = evaluate_model(X, y, predict)
     log.info(f'Метрики успешно расчитаны: MAE = {mae:.2f}, MSE = {mse:.2f}, RMSE = {rmse:.2f}, R2-score = {r2:.2f}')
-    log.info(f'Нормализованные метрики: MAE')
+    log.info('Нормализованные метрики: MAE')
 
     log.info('Этап 7: расчёт метрик MAE, MSE, RMSE и R2-score на незнакомых данных')
     X_test = test_data[features].to_numpy()
