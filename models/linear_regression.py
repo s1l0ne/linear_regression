@@ -15,9 +15,7 @@ def linear_regression(x: np.ndarray, y: np.ndarray, rate: float = 0.00001, epoch
         for i in range(len(x)):
             y_predict = np.dot(x[i], w) + b
 
-            for j in range(len(w)):
-                w[j] += rate * (y[i] - y_predict) * x[i][j]
-
+            w += rate * (y[i] - y_predict) * x[i]
             b += rate * (y[i] - y_predict)
 
     def predict(x: np.ndarray) -> float:
