@@ -1,8 +1,8 @@
 import logging
-from enum import IntEnum
-import os
 import logging as log
+import os
 import sys
+from enum import IntEnum
 
 
 class DataSet(IntEnum):
